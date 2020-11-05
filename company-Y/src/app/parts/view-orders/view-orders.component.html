@@ -1,0 +1,45 @@
+<div class="main container-fluid">
+  <div class="container-fluid search col-md-6 col-sm-8">
+    <form #form="ngForm" autocomplete="off">
+      <input
+        name="partId"
+        placeholder="Search Job Name"
+        [(ngModel)]="jobName"
+        class="form-control"
+        style="margin-top: 10px;"
+      />
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="btn btn-primary"
+        (click)="getJob(jobName)"
+        style="margin: 10px;"
+        (keyup.enter)="getJob(jobName)"
+      >
+        Search
+      </button>
+      <button type="submit" class="btn btn-danger" (click)="ngOnInit(); form.reset()" style="margin: 10px;">
+        Reset
+      </button>
+    </form>
+  </div>
+</div>
+<div class="main container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let col of columns">
+          {{ col }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobs; let i = index">
+        <td scope="row">{{ job.jobName }}</td>
+        <td>{{ job.userId }}</td>
+        <td>{{ job.partId }}</td>
+        <td>{{ job.qty }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

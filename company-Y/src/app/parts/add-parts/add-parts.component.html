@@ -1,0 +1,58 @@
+<div class="container-fluid d-flex align-items-center">
+  <div class="row mt-3" style="flex: 1;">
+    <div class="col-xs-4 col-sm-4 col-md-4 d-flex justify-content-center align-items-center"></div>
+    <div class="col-xs-4 col-sm-4 col-md-4 d-flex justify-content-center align-items-center">
+      <div class="card" style="min-width: 80%;">
+        <div class="card-header">
+          <h2>Add Part</h2>
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="form-group">
+              <label class="form-check-label">Part Id</label>
+              <input
+                name="partId"
+                #partId="ngModel"
+                [(ngModel)]="service.formData.partId"
+                class="form-control"
+                type="number"
+                required
+              />
+              <div class="validation-error" *ngIf="partId.invalid && partId.touched">This field cannot be empty</div>
+            </div>
+            <div class="form-group">
+              <label class="form-check-label">Part Name</label>
+              <input
+                name="partName"
+                #partName="ngModel"
+                [(ngModel)]="service.formData.partName"
+                class="form-control"
+                type="text"
+                required
+              />
+              <div class="validation-error" *ngIf="partName.invalid && partName.touched">
+                This field cannot be empty
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-check-label">Quantity</label>
+              <input
+                name="qoh"
+                #qoh="ngModel"
+                [(ngModel)]="service.formData.qoh"
+                class="form-control"
+                type="number"
+                required
+              />
+              <div class="validation-error" *ngIf="qoh.invalid && qoh.touched">This field cannot be empty</div>
+            </div>
+            <div class="form-group">
+              <button type="submit" [disabled]="form.invalid" class="btn btn-primary">SUBMIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 d-flex justify-content-center align-items-center"></div>
+    </div>
+  </div>
+</div>

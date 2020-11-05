@@ -1,0 +1,52 @@
+<!-- <li *ngIf="parts?.length == 0">
+    <span class="search_no_results">
+        No data found 
+     </span>
+</li> -->
+<div class="main container-fluid">
+  <div class="container-fluid search col-md-6 col-sm-8">
+    <form #form="ngForm" autocomplete="off">
+      <input
+        name="partId"
+        placeholder="Search Part Id"
+        [(ngModel)]="partId"
+        class="form-control"
+        style="margin-top: 10px;"
+      />
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="btn btn-primary"
+        (click)="getPart(partId)"
+        style="margin: 10px;"
+        (keyup.enter)="getPart(partId)"
+      >
+        Search
+      </button>
+      <button type="submit" class="btn btn-danger" (click)="ngOnInit(); form.reset()" style="margin: 10px;">
+        Reset
+      </button>
+    </form>
+  </div>
+</div>
+<div class="main container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let col of columns">
+          {{ col }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let part of parts; let i = index">
+        <td scope="row">{{ part.partId }}</td>
+        <td>{{ part.partName }}</td>
+        <td>{{ part.qoh }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="update(part)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
